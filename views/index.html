@@ -290,10 +290,11 @@
 
 			// itemSize = 3 because there are 3 values (components) per vertex
 			geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
-			var material = new THREE.MeshBasicMaterial( { color: 'white' } );
+			var material = new THREE.MeshBasicMaterial( { color: 'white', transparent: true } );
 			//TODO: not working so there must be a different way to make it visible on both sides 
 			// geometry.material.side = THREE.DoubleSide;
 			var mesh = new THREE.Mesh( geometry, material );
+			mesh.material.side = THREE.DoubleSide;
 			scene.add( mesh );
 
 			function render() {
@@ -302,7 +303,7 @@
 
 			function animate() {
 				requestAnimationFrame(animate);
-				controls.update();
+				controls.update(camera);
 				render();
 			}
 
